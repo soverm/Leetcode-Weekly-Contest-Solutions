@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {
+        unordered_map<string, int>sameRowMap;
+        for (auto x:matrix){
+            int firstElementOfRow = x[0];
+            string mapKey;
+            for (int i=0; i< x.size();i++){
+                if (x[i]==firstElementOfRow){
+                    mapKey.push_back('1');
+                }
+                else {
+                    mapKey.push_back('0');
+                }
+            }
+            sameRowMap[mapKey]++;
+        }
+        int maxEqualRows = 0;
+        for (auto x:sameRowMap){
+            maxEqualRows = max(maxEqualRows, x.second);
+        }
+        return maxEqualRows;
+    }
+};
